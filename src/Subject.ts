@@ -1,4 +1,4 @@
-import type { ISubject, Subscriber } from './ISubject';
+import { ISubject, Subscriber } from './ISubject.js';
 
 export class Subject<T> implements ISubject<T> {
     private subscribers: Subscriber<T>[] = [];

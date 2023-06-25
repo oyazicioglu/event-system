@@ -1,8 +1,4 @@
-import type { ISubject, Subscriber } from "./ISubject";
-import { Subject } from "./Subject";
+import { ISubject, Subscriber } from './ISubject.js';
+import { Subject } from './Subject.js';
 
-export {
-    type ISubject,
-    type Subscriber,
-    Subject,
-}
+export { type ISubject, type Subscriber, Subject };
