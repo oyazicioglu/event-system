@@ -1,21 +1,31 @@
-import { ISubject, Subscriber } from './ISubject.js';
+import { IObservable, Subscriber } from "./IObservable.js";
+import { UUID } from "./UUID.js";
 
-export class Subject<T> implements ISubject<T> {
-    private subscribers: Subscriber<T>[] = [];
+export class Obserbable<T> implements IObservable<T> {
+  private subscribers: Subscriber<T>[] = [];
 
-    Subscribe(callback: (data: T) => void) {
-        this.subscribers.push({
-            callback,
-        });
-    }
+  subscribe(callback: (data: T) => void) {
+    const newSubscriber: Subscriber<T> = {
+      callback,
+      id: UUID.create(),
+    };
 
-    Notify(data: T) {
-        this.subscribers.forEach((cb) => {
-            cb.callback(data);
-        });
-    }
+    this.subscribers.push(newSubscriber);
+    return newSubscriber;
+  }
 
-    UnSubscribe() {
-        this.subscribers = [];
-    }
+  notify(data: T) {
+    this.subscribers.forEach((cb) => {
+      cb.callback(data);
+    });
+  }
+
+  unsubscribe(id: string) {
+    this.subscribers = this.subscribers.filter((s) => s.id !== id);
+    return this;
+  }
+
+  unsubscribeAll() {
+    this.subscribers = [];
+  }
 }
