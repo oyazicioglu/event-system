@@ -1,5 +1,5 @@
 {
-    "name": "qei-event-system",
+    "name": "@qei/event-system",
     "version": "0.1.4",
     "description": "DOM-Free Event System",
     "main": "./dist/index.js",
